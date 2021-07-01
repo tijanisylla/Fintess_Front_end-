@@ -1,65 +1,54 @@
 import React,{ useState, useEffect } from 'react'
-import URL from './components/URL'
-import Test from './components/Test'
-import axios from 'axios'
-import './css/count.css'
-import ReactDOM, { render } from 'react-dom'
-
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Home,Test,Routine ,Login,Logout, Register,Activities,  Myroutine, Form, Notfound, Header } from './components'
+import ReactDOM from 'react-dom'
+
+// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 
-// const api = axios.create()
-//  api.get(URL,'/')
-//  .then(res => {
-//    const data = res.data
-//    console.log(data)
- 
-   
-//  })
+
 
 
 //useState
 const App = () => {
-const [count, setCount] = useState(0)
-const [text, setText]  = useState()
-
-function decrement(){
-  setCount(count - 1)
-}
-function increment () {
-  setCount(count + 1)
-
-  if(count >= 10){
-    console.log('good job!')
-  }
-}
-
-function post() {
-  setText('Post')
-}
-function comments() {
-  setText('Comments')
-}
+  const [hello, world ] = useState([])
 
   return(
     
-  <>
-  
-   <h2>hello </h2>
 
-   <button onClick= { decrement }> - </button>
-   <span> {count} </span>
-   <button onClick={ increment }>+</button>
-   <br/>
-   <br/>
-   <br/>
-   <button onClick={post} >Post</button>
-  
-   <button onClick={comments}  >comments</button>
-   <span> { text } </span>
- </>
-  )}
+<Router>
 
-<Test />
-ReactDOM.render( <App />,  document.getElementById('app')  )
+
+<>
+
+
+<Switch>
+
+<Route  path="/" component={Home} exact={true}/>
+
+<Route path="/" path="/test" component={Test} exact={true}/>
+<Route exact  path="/register" component={Register} />
+<Route exact  path="/form" component={Form} />
+<Route exact path="/routine" component={Routine} />
+<Route exact path="/login" component={Login} />
+<Route exact path="/logout" component={Logout} />
+<Route exact path="/activities" component={Activities} />
+<Route exact path="/myroutine" component={Myroutine} />
+<Route exact  component={Notfound} />
+<Home/> 
+</Switch>
+ 
+ 
+  
+  </>
+  
+  
+</Router>
+ )
+
+  
+  }
+
+
+ReactDOM.render( <App/>,  document.getElementById('app')  )
