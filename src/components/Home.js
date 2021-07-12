@@ -1,85 +1,61 @@
-import {React,useState, useEffect}from 'react'
-import {API} from './URL'
-import axios from 'axios'
-import { Router, Link, BrowserRouter } from 'react-router-dom'
-import { data } from 'browserslist';
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import siteUrl from './url';
 
 
-let token = localStorage.getItem('token')
-  async function gettingUser() {
-    // fetch data from a url endpoint
-    try{
-    const data = await axios.get(`${API}/api.users/me`,{
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-    }
+
+async function getUser(token) {
+    let { data } = await axios.get(`${siteUrl}/api/users/me`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
     });
-    return data
 
-    let id = data[0].id  
-    //  console.log('DATA',id)
-   
+    return data;
+};
 
-
-    return data
-    
-   
-  } catch(error){
-      console.log(error)
-  }
-}
-
-console.log('DATA User',data)
-
-
-  
-
-const Home = () =>  {
-  const [data, setData] = useState([])
-
-  useEffect(async () => {
-    setData( await gettingUser() ) 
-    
-  }, [])
-
-// console.log(data)
-
-    return (
-        <>
-        
-            <header>
-            
-               <Link to='/test'>Test</Link>
-               <Link to='/login'>Login</Link>
-               <Link to='/logout'>Logout</Link>
-               <Link to='/register'>Register</Link>
-              
-               </header>
-           <main>
-            
+function displayUserData(userData) {
+    return ( <>
+        <h1>ID: {userData.id}</h1>
+        <h1>Username: {userData.username}</h1>
+    </>);
+};
 
 
 
+const Home = ({ loggedIn }) => {
+    const token = localStorage.getItem('Token');
 
-              <h1>Home</h1>
+    // States
+    const [userData, setUserData] = useState({})
 
+    // Fetch user info from database on component load
+    useEffect(() => {
+        async function getMyInfo() {
+            if (token) {
+                let data = await getUser(token);
+                setUserData(data);
+            };
+        };
 
-           </main>
-          
-          
-            <h3>{}</h3>
-            
+        getMyInfo();
+    }, []);
 
+    // Insert user info into template
+    const userInfo = displayUserData(userData);
 
+    return (<>
+        <div id='user-info'>
+            {loggedIn ? userInfo : null}
+        </div>
 
+        <div id='welcome'>
+            <h1>Welcome to Fitness Tracker</h1>
+           
+        </div>
+    </> );
+};
 
-            
-            
-
-
-       
-        </>
-    )
-}
-export default  Home
+export default Home;

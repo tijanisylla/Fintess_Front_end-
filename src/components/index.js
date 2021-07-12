@@ -1,11 +1,8 @@
-export { default as Login } from "./Login"
-export { default as Activities } from './Activities';
-export { default as Form } from './Form';
-export { default as Header } from './Header';
-export { default as Home } from "./Home";
-export { default as Myroutine } from "./Myroutine";
-export { default as Routine} from "./Routine";
-export { default as Register } from "./Register";
-export { default as Test } from "./Test";
-export { default as Notfound } from "./Notfound";
-export { default as Logout } from "./Logout";
+export { Activities } from './activities/';
+export { Routines } from './routines/';
+export { MyRoutines } from './my_routines';
+export { Login, Register } from './user/';
+
+export { default as Footer } from './footer';
+export { default as Nav } from './nav';
+export { default as Home } from './home';

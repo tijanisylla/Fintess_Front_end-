@@ -1,0 +1,29 @@
+#routine-list, #my-routine-list {
+    margin-top: 50px;
+
+    width: 90%;
+    padding: 5px;
+
+    background-color: white;
+    border: 5px solid blue;
+    border-radius: 15px;
+
+    box-shadow: 10px 0px 5px -5px gray;
+}
+
+.routine {
+    background-color: white;
+    padding: 5px;
+}
+
+.routine:first-of-type {
+    border-radius: 15px 15px 0px 0px ;
+}
+
+.routine:last-of-type {
+    border-radius: 0px 0px 15px 15px ;
+}
+
+.routine:nth-of-type(2n) {
+    background-color: lightblue;
+}

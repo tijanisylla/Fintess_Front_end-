@@ -1,0 +1,34 @@
+#activity-table {
+    margin-top: 50px;
+
+    width: 90%;
+    padding: 5px;
+    background: white;
+    border: 5px solid blue;
+    border-radius: 15px;
+
+    box-shadow: 10px 0px 5px -5px gray;
+}
+
+.activity-list {
+    margin: 2px;
+    border: solid 2px gray;
+    border-radius: 5px;
+}
+
+.activity {
+    background-color: lightgray;
+    padding: 5px;
+}
+
+.activity:nth-of-type(2n) {
+    background-color: lightgreen;
+}
+
+.routine:nth-of-type(2n) .activity {
+    background-color: white;
+}
+
+.routine:nth-of-type(2n) .activity:nth-of-type(2n) {
+    background-color: lightgray;
+}
